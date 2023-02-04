@@ -1,0 +1,17 @@
+- I have been able to find some code online (kaggle)
+that used sift correctly by implementing the bag of words algorithm and by 
+ensuring I had the correct module versions installed in my environment
+
+- the results from using sift are very strong.
+
+- the results with sift are very weak, loss > 5
+- however, the classification report states that
+the f1 score is zero 
+
+An F1 score can be zero in two scenarios:
+
+> When there are no positive predictions made by the model and all instances are classified as negative. In this case, precision and recall both equal to 0 and F1 score is 0.
+> When there are only positive predictions made by the model but no actual positive instances exist in the test data. In this case, precision is 0, recall is undefined, and the F1 score is also 0.
+
+- I limited the model to only classify 15 classes instead of the
+original 100 and found an average accuracy of 0.29
