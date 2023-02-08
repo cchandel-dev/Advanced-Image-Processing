@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report
 
-img_path = os.path.join( os.path.dirname(__file__), "leaf-classification\\images")
+img_path = os.path.join( os.path.dirname(__file__), "leaf-classification-jpg-resized")
 train = pd.read_csv(os.path.join( os.path.dirname(__file__), "leaf-classification\\mapping.csv"))
 species = train.species.sort_values().unique()
 
@@ -23,7 +23,7 @@ def image_vector_generator():
         if speciesdict[train.species[i]] in species:
             Y.append(speciesdict[train.species[i]])
             img = cv2.imread(os.path.join(img_path, str(train.id[i]) + ".jpg"))
-            img = cv2.resize(img, (300, 300),interpolation=cv2.INTER_NEAREST)
+            # img = cv2.resize(img, (300, 300),interpolation=cv2.INTER_NEAREST)
             img = np.array(img).flatten()
             X.append(img)
     return X, Y
