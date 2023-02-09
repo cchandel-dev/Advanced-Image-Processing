@@ -8,7 +8,7 @@ from sklearn.metrics import classification_report
 
 # https://www.kaggle.com/code/pierre54/bag-of-words-model-with-sift-descriptors
 
-img_path = os.path.join( os.path.dirname(__file__), "leaf-classification\\images")
+img_path = os.path.join(os.path.dirname(__file__), "leaf-classification-jpg-resized")
 train = pd.read_csv(os.path.join( os.path.dirname(__file__), "leaf-classification\\mapping.csv"))
 species = train.species.sort_values().unique()
 
