@@ -28,6 +28,7 @@ def image_vector_generator(source = False):
             if source:
                 img = cv2.resize(img, (300, 300),interpolation=cv2.INTER_NEAREST)
             img = np.array(img).flatten()
+            print('configuring image {}.jpg'.format(train.id[i]))
             X.append(img)
     return X, Y
 
@@ -51,7 +52,7 @@ if __name__ == "__main__":
         print('you selected Interpolated Resizing')
     else:
         print('you selected SVG Based Resizing')
-    print('This script may take > 5 minutes to execute, you will experience two prolonged periods with no terminal text activity, just be patient!')
+    print('This script may take > 5 minutes to execute')
     X, Y = image_vector_generator(input_source == '2')
     # Split the data into train/test sets
     split = int(len(X) *0.7)

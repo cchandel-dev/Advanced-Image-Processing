@@ -16,12 +16,14 @@ train = pd.read_csv(os.path.join(data_path, "leaf-classification\\mapping.csv"))
 species = train.species.sort_values().unique()
 
 def sift_feature_generator(source = False):
+    print('generating sift feautures')
     img_path = svg_img_path
     if source:
         img_path = org_img_path
     dico = []
     sift = cv2.SIFT_create()
     for leaf in train.id:
+        print('Pre - kmeans: extracting from image {}'.format(leaf))
         img = cv2.imread(os.path.join(img_path, str(leaf) + ".jpg"))
         kp, des = sift.detectAndCompute(img, None)
 
@@ -39,6 +41,7 @@ def sift_feature_generator(source = False):
     histo_list = []
 
     for leaf in train.id:
+        print('Post - kmeans: extracting from image {}'.format(leaf))
         img = cv2.imread(os.path.join(img_path, str(leaf) + ".jpg"))
         kp, des = sift.detectAndCompute(img, None)
 
@@ -75,12 +78,12 @@ def mlp_train_test_report():
 
 
 if __name__ == "__main__":
-    input_source = input("Do you want to run the Raw Image Classifier with (default)SVG Resizing(1) or Interpolated Resizing(2), (Please enter 1/2):")
+    input_source = input("Do you want to run the Sift Classifier with (default)SVG Resizing(1) or Interpolated Resizing(2), (Please enter 1/2):")
     if input_source == '2':
         print('you selected Interpolated Resizing')
     else:
         print('you selected SVG Based Resizing')
-    print('This script may take > 5 minutes to execute, you will experience two prolonged periods with no terminal text activity, just be patient!')
+    print('This script may take > 5 minutes to execute!')
     X, Y = sift_feature_generator(input_source == '2')
     # Split the data into train/test sets
     split = int(len(X) *0.7)
