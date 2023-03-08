@@ -108,7 +108,7 @@ model.add(Dropout(0.8))
 # Add the output layer with 10 nodes (one for each class) and a softmax activation function
 model.add(Dense(num_classes, activation='softmax'))
 
-from keras.utils.vis_utils import plot_model
+from tensorflow.keras.utils.vis_utils import plot_model
 plot_model(model, to_file='model_plot.png', show_shapes=True, show_layer_names=True)
 
 batch_size = 1000
