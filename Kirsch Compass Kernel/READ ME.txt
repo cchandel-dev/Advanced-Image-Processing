@@ -1,0 +1,5 @@
+1. install the requirements listed in requirements.txt in your virtual enviornment using the command below.
+
+pip install -r requirements.txt
+
+2. main() will run then compare_magnitude(), it will require you to reply some questions about the desired threshold.

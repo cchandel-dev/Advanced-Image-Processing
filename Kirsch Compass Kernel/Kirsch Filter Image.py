@@ -110,24 +110,35 @@ def main():
     # Set the threshold percentages
     angle_threshold = -1
     magnitude_threshold = -1
-    while angle_threshold < 0 :
-        user_input = input("Enter an angle image threshold which is a float between 0 and 1 (not-inclusive): ")
-        if is_numeric(user_input):
-            angle_threshold = float(user_input)
-            if angle_threshold > 1:
-                angle_threshold = 0.99
-    while magnitude_threshold < 0:
-        user_input = input("Enter a magnitude image threshold which is a float between 0 and 1 (not-inclusive): ")
-        if is_numeric(user_input):
-            magnitude_threshold = float(user_input)
-            if magnitude_threshold > 1:
-                magnitude_threshold = 0.99
-
+    user_input = input("Enter an angle image threshold which is a float between 0 and 1 (non-numeric will give no thresholding): ")
+    if is_numeric(user_input):
+        angle_threshold = float(user_input)
+        if angle_threshold > 1:
+            angle_threshold = 1
+        if angle_threshold < 0:
+            angle_threshold = 0
+    else:
+        angle_threshold = -1
+    user_input = input("Enter an angle image threshold which is a float between 0 and 1 (non-numeric will give no thresholding): ")
+    if is_numeric(user_input):
+        magnitude_threshold = float(user_input)
+        if magnitude_threshold > 1:
+            magnitude_threshold = 1
+        if magnitude_threshold < 0:
+            magnitude_threshold = 0
+    else:
+        magnitude_threshold = -1
     #Display the Images
     ax[0].imshow(angleImage(im, angle_threshold), cmap='gray')
-    ax[0].set_title('Angle Image with {} threshold'.format(angle_threshold))
     ax[1].imshow(magnitudeImage(im, magnitude_threshold), cmap='gray')
-    ax[1].set_title('Magnitude Image with {} threshold'.format(magnitude_threshold))
+    if magnitude_threshold >= 0:
+        ax[1].set_title('Magnitude Image with {} threshold'.format(magnitude_threshold))
+    else:
+        ax[1].set_title('Magnitude Image with no threshold')
+    if angle_threshold >= 0:
+        ax[0].set_title('Angle Image with {} threshold'.format(angle_threshold))
+    else:
+        ax[0].set_title('Angle Image with no threshold')
 
     #customize axes
     ax[0].get_xaxis().set_visible(False)
@@ -137,9 +148,10 @@ def main():
 
     # Show the figure
     fig = plt.get_current_fig_manager()
-    fig.suptitle("Kirsh Angle and Magnitude Images")
+    plt.suptitle("Kirsh Angle and Magnitude Images")
     fig.set_window_title("Kirch Compass Images")
-    plt.show(block = True)
+    plt.show(block = False)
 
 if __name__ =='__main__':
+    main()
     compare_magnitude()
