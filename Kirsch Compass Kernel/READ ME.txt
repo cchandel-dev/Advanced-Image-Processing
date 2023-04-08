@@ -2,4 +2,8 @@
 
 pip install -r requirements.txt
 
-2. main() will run then compare_magnitude(), it will require you to reply some questions about the desired threshold.
+2. run Kirsch Filter Image.py
+
+main() will run then compare_magnitude(), it will require you to reply some questions about the desired threshold.
+
+3. if you are curious about the matlab code, please run Sobel Filter Image.m
